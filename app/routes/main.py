@@ -22,23 +22,11 @@ main = Blueprint('main', __name__)
 
 
 
-current_app.app_context.secret_key = 'development key'
-current_app.app_context.config['DEBUG'] = False
-current_app.app_context.config['TESTING'] = False
-current_app.app_context.config['MAIL_SERVER'] = 'smtp.zoho.eu'
-current_app.app_context.config['MAIL_PORT'] = 465
-current_app.app_context.config['MAIL_USE_SSL'] = True
-#app.config['MAIL_DEBUG'] = False
-current_app.app_context.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
-current_app.app_context.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
-current_app.app_context.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
-current_app.app_context.config['MAIL_MAX_EMAILS'] = 5
-#app.config['MAIL_SUPPRESS_SEND'] = False
-current_app.app_context.config['MAIL_ASCII_ATTACHMENTS'] = False
 
 
 
-mail = Mail(current_app.app_context)
+
+mail = Mail(current_app)
 
 
     
