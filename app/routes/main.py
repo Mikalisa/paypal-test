@@ -69,8 +69,8 @@ def ipn():
         print('##########################', payment_status)
 
         payment = Payment(unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_status=payment_status, txn_id=txn_id)
-        posts_db.session.add(payment)
-        posts_db.session.commit()
+        db.session.add(payment)
+        db.session.commit()
 
 
 
