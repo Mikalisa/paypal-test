@@ -12,6 +12,8 @@ from app.extensions import db
 
 from app.models import Payment
 
+from time import ctime
+
 
 main = Blueprint('main', __name__)
 
@@ -57,7 +59,7 @@ def ipn():
     if r.text == 'VERIFIED':
 
         payer_email =  request.form.get('payer_email')
-        unix = 122123
+        unix = ctime()
         payment_date = request.form.get('payment_date')
         username = request.form.get('first_name')
         last_name = request.form.get('last_name')
@@ -68,7 +70,7 @@ def ipn():
         txn_id = request.form.get('txn_id')
         
 
-        payment = Payment(unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
+        payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
         db.session.add(payment)
         db.session.commit()
 

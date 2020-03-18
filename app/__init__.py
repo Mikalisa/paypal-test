@@ -6,6 +6,10 @@ from .models import Payment
 
 from .routes.main import main
 
+from flask_admin import Admin
+
+from flask_admin.contrib.sqla import ModelView
+
 
 
 def create_app(config_file='settings.py'):
@@ -19,5 +23,11 @@ def create_app(config_file='settings.py'):
     
     
     app.cli.add_command(create_tables)
+
+
+    admin = Admin(main)
+    admin.add_view(ModelView(Payment, db.session))
+
+
     
     return app

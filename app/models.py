@@ -3,7 +3,8 @@ from .extensions import db
 
 class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    unix = db.Column(db.Integer)
+    payer_email = db.Column(db.String(100))
+    unix = db.Column(db.String(100))
     payment_date = db.Column(db.String(400))
     username = db.Column(db.String(400))
     last_name = db.Column(db.String(400))
