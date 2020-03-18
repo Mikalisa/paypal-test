@@ -24,19 +24,20 @@ def create_app(config_file='settings.py'):
     
     app.cli.add_command(create_tables)
     
-    app.secret_key = 'development key'
-    app.config['DEBUG'] = False
-    app.config['TESTING'] = False
-    app.config['MAIL_SERVER'] = 'smtp.zoho.eu'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USE_SSL'] = True
-    #app.config['MAIL_DEBUG'] = False
-    app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
-    app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
-    app.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
-    app.config['MAIL_MAX_EMAILS'] = 5
-    #app.config['MAIL_SUPPRESS_SEND'] = False
-    app.config['MAIL_ASCII_ATTACHMENTS'] = False
+    with app.app_context():
+        app.secret_key = 'development key'
+        app.config['DEBUG'] = False
+        app.config['TESTING'] = False
+        app.config['MAIL_SERVER'] = 'smtp.zoho.eu'
+        app.config['MAIL_PORT'] = 465
+        app.config['MAIL_USE_SSL'] = True
+        #app.config['MAIL_DEBUG'] = False
+        app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+        app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
+        app.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
+        app.config['MAIL_MAX_EMAILS'] = 5
+        #app.config['MAIL_SUPPRESS_SEND'] = False
+        app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
 
     admin = Admin(app)
