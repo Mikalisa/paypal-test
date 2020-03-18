@@ -63,7 +63,7 @@ def ipn():
         last_name = request.form.get('last_name')
         payment_gross = request.form.get('payment_gross')
         payment_fee = request.form.get('payment_fee')
-        payment_net = float(payment_gross) - float(payment_fee)
+        #payment_net = float(payment_gross) - float(payment_fee)
         payment_status = request.form.get('payment_status')
         txn_id = request.form.get('txn_id')
         print('##########################', payment_status)
