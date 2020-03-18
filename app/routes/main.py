@@ -59,16 +59,16 @@ def ipn():
         payer_email =  request.form.get('payer_email')
         unix = datetime.utcnow
         payment_date = request.form.get('payment_date')
-        username = request.form.get('custom')
+        username = request.form.get('first_name')
         last_name = request.form.get('last_name')
-        payment_gross = request.form.get('payment_gross')
-        payment_fee = request.form.get('payment_fee')
-        #payment_net = float(payment_gross) - float(payment_fee)
+        payment_gross = request.form.get('mc_gross')
+        payment_fee = request.form.get('mc_fee')
+        payment_net = float(payment_gross) - float(payment_fee)
         payment_status = request.form.get('payment_status')
         txn_id = request.form.get('txn_id')
-        print('##########################', payment_status)
+        
 
-        payment = Payment(unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_status=payment_status, txn_id=txn_id)
+        payment = Payment(unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
         db.session.add(payment)
         db.session.commit()
 
