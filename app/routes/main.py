@@ -26,7 +26,7 @@ main = Blueprint('main', __name__)
 
 
 
-mail = Mail(current_app)
+mail = Mail(current_app.app_context)
 
 
     
