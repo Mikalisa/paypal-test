@@ -96,7 +96,7 @@ def ipn():
         
         
         
-        msg = Message(form.subject.data, recipients=['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'])
+        msg = Message("Payment from the website", recipients=['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'])
         msg.body = """Payment recieved form customer. 
         name: %s
         email: <%s>
