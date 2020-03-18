@@ -6,6 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 from werkzeug.datastructures import ImmutableOrderedMultiDict
 import os
 import requests
+from datetime import datetime, timedelta
 
 from app.extensions import db
 
@@ -56,7 +57,7 @@ def ipn():
     if r.text == 'VERIFIED':
 
         payer_email =  request.form.get('payer_email')
-        unix = int(time.time())
+        unix = int(datetime.utcnow)
         payment_date = request.form.get('payment_date')
         username = request.form.get('custom')
         last_name = request.form.get('last_name')
