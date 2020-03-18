@@ -1,5 +1,5 @@
 
-from flask import Flask, flash, redirect, render_template, request, session, url_for, g, jsonify, Blueprint
+from flask import Flask, flash, redirect, render_template, request, session, url_for, g, jsonify, Blueprint, current_app
 from flask_admin import Admin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin.contrib.sqla import ModelView
@@ -22,29 +22,26 @@ main = Blueprint('main', __name__)
 
 
 
+current_app.secret_key = 'development key'
+current_app.config['DEBUG'] = False
+current_app.config['TESTING'] = False
+current_app.config['MAIL_SERVER'] = 'smtp.zoho.eu'
+current_app.config['MAIL_PORT'] = 465
+current_app.config['MAIL_USE_SSL'] = True
+#app.config['MAIL_DEBUG'] = False
+current_app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+current_app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
+current_app.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
+current_app.config['MAIL_MAX_EMAILS'] = 5
+#app.config['MAIL_SUPPRESS_SEND'] = False
+current_app.config['MAIL_ASCII_ATTACHMENTS'] = False
 
 
 
-main.config = {}
+mail = Mail(current_app)
 
-mail = Mail(main)
 
-@main.record
-def record_params(setup_state):
-    app = setup_state.app
-    main.secret_key = 'development key'
-    main.config['DEBUG'] = False
-    main.config['TESTING'] = False
-    main.config['MAIL_SERVER'] = 'smtp.zoho.eu'
-    main.config['MAIL_PORT'] = 465
-    main.config['MAIL_USE_SSL'] = True
-    #app.config['MAIL_DEBUG'] = False
-    main.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
-    main.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
-    main.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
-    main.config['MAIL_MAX_EMAILS'] = 5
-    #app.config['MAIL_SUPPRESS_SEND'] = False
-    main.config['MAIL_ASCII_ATTACHMENTS'] = False
+    
 
 
 @main.route('/')
