@@ -14,8 +14,29 @@ from app.models import Payment
 
 from time import ctime
 
+from flask_mail import Message, Mail
+
 
 main = Blueprint('main', __name__)
+
+
+
+main.secret_key = 'development key'
+main.config['DEBUG'] = False
+main.config['TESTING'] = False
+main.config['MAIL_SERVER'] = 'smtp.zoho.eu'
+main.config['MAIL_PORT'] = 465
+main.config['MAIL_USE_SSL'] = True
+#app.config['MAIL_DEBUG'] = False
+main.config['MAIL_USERNAME'] = 'support@divaexplorer-tvj.co.uk'
+main.config['MAIL_PASSWORD'] = 'Q6mjo56!'
+main.config['MAIL_DEFAULT_SENDER'] = ('From the website','support@divaexplorer-tvj.co.uk')
+main.config['MAIL_MAX_EMAILS'] = 5
+#app.config['MAIL_SUPPRESS_SEND'] = False
+main.config['MAIL_ASCII_ATTACHMENTS'] = False
+ 
+
+mail = Mail(main)
 
 
 
@@ -73,6 +94,17 @@ def ipn():
         payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
         db.session.add(payment)
         db.session.commit()
+        
+        
+        
+        msg = Message(form.subject.data, recipients=['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'])
+        msg.body = """Payment recieved form customer. 
+        name: %s
+        email: <%s>
+        payment_status: %s
+        Price paid: %s
+        """ % (username, payer_email, payment_status, payment_gross)
+        mail.send(msg)
 
 
 
