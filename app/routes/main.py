@@ -57,7 +57,7 @@ def ipn():
     if r.text == 'VERIFIED':
 
         payer_email =  request.form.get('payer_email')
-        unix = int(datetime.utcnow)
+        unix = datetime.utcnow
         payment_date = request.form.get('payment_date')
         username = request.form.get('custom')
         last_name = request.form.get('last_name')
