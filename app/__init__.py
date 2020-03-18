@@ -4,13 +4,15 @@ from .commands import create_tables
 from .extensions import db
 from .models import Payment
 
+from flask_mail import Mail
+
 from .routes.main import main
 
 from flask_admin import Admin
 
 from flask_admin.contrib.sqla import ModelView
 
-from flask_mail import Mail
+
 
 
 mail = Mail()
