@@ -14,22 +14,12 @@ from app.models import Payment
 
 from time import ctime
 
-from flask_mail import Message, Mail
+from email import send_email
 
 
 main = Blueprint('main', __name__)
 
 
-
-
-
-
-
-
-mail = Mail(current_app.app_context)
-
-
-    
 
 
 @main.route('/')
@@ -91,17 +81,16 @@ def ipn():
         
         
         
-        
-        msg = Message("Payment from the website", recipients=['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'])
-        msg.body = """Payment recieved form customer. 
+        send_email("Payment from the website", support@divaexplorer-tvj.co.uk, ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
+
+         """Payment recieved form customer. 
         name: %s
         email: <%s>
         payment_status: %s
         Price paid: %s
         """ % (username, payer_email, payment_status, payment_gross)
-        mail.send(msg)
-
-
+        )
+    
 
         with open('/tmp/ipnout.txt','a') as f:
             data = 'SUCCESS\n'+str(values)+'\n'
