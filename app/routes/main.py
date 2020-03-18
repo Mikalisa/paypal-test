@@ -89,6 +89,7 @@ def ipn():
         payment_status: %s
         Price paid: %s
         """ % (username, payer_email, payment_status, payment_gross)
+        
         )
     
 

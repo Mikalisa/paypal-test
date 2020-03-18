@@ -22,13 +22,15 @@ def create_app(config_file='settings.py'):
     app.config.from_pyfile(config_file)
     
     db.init_app(app)
+
+    mail.init_app(app)
     
     app.register_blueprint(main)
     
     
     app.cli.add_command(create_tables)
 
-    mail.init_app(app)
+    
 
 
     admin = Admin(app)
