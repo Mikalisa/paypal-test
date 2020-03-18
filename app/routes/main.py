@@ -14,7 +14,7 @@ from app.models import Payment
 
 from time import ctime
 
-from email import send_email
+from app.email import send_email
 
 
 main = Blueprint('main', __name__)
