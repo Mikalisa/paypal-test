@@ -25,7 +25,7 @@ def create_app(config_file='settings.py'):
     app.cli.add_command(create_tables)
 
 
-    admin = Admin(main)
+    admin = Admin(app)
     admin.add_view(ModelView(Payment, db.session))
 
 
