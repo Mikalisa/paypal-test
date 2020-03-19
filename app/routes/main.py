@@ -95,9 +95,9 @@ Thank you for choosing Divaexplorer. Here's a summary of your order.
 Order Details
 
 Order Date: %s                                       Payment Source: Paypal
-Transaction ID: %s                                   Initial Charge: %s
-User email: %s                                       Final Cost: %s                      
-                                                     Item Type:
+Transaction ID: %s                                      Initial Charge: %s
+                                                            Final Cost: %s                      
+                                                        Item Type:
 
 													 TOTAL:	%s
 
@@ -111,7 +111,7 @@ https://www.divaexplorer-tvj.co.uk/
 London, UK
 
 
-""" % (username + " " + last_name, unix, txn_id, payer_email, "£"+payment_gross, "£"+payment_gross, "£"+payment_gross)
+""" % (username + " " + last_name, unix, txn_id, "£"+payment_gross, "£"+payment_gross, "£"+payment_gross)
         
         )
     
