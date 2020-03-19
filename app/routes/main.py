@@ -83,12 +83,35 @@ def ipn():
         
         send_email("Payment from the website", 'support@divaexplorer-tvj.co.uk', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
 
-         """Payment recieved form customer. 
-        name: %s
-        email: <%s>
-        payment_status: %s
-        Price paid: %s
-        """ % (username, payer_email, payment_status, payment_gross)
+         """
+
+
+Divaexplorer Order Summary
+
+Dear %s,
+
+Thank you for choosing Divaexplorer. Here's a summary of your order.
+
+Order Details
+
+Order Date:	 	%s                                    Payment Source:	 	Paypal
+Transaction ID:	 	%s                                Initial Charge:	 	%s
+                                                      Final Cost:	 	    %s                      
+                                                      Item Type:
+
+													  TOTAL	%s
+
+For any concern. Please Contact us via divaexplorer@divaexplorer-tvj.co.uk.
+
+
+Regards,
+Team Divaexplorer
+https://www.divaexplorer-tvj.co.uk/
+
+London, UK
+
+
+""" % (username + " " + last_name, unix, txn_id, payer_email, "£"+payment_gross)
         
         )
     
