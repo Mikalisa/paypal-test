@@ -1,10 +1,10 @@
 from flask import Flask 
 
 from .commands import create_tables
-from .extensions import db
+from .extensions import db, mail
 from .models import Payment
 
-from flask_mail import Mail
+
 
 from .routes.main import main
 
@@ -15,7 +15,7 @@ from flask_admin.contrib.sqla import ModelView
 
 
 
-mail = Mail()
+
 
 
 def create_app(config_file='settings.py'):
