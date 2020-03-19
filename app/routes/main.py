@@ -77,9 +77,6 @@ def ipn():
         db.session.add(payment)
         db.session.commit()
 
-
-        
-        
         
         send_email("Payment from the website", ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
 
@@ -112,6 +109,8 @@ London, UK
 """ % (username + " " + last_name, unix, txn_id, "£"+payment_gross, "£"+payment_gross, "£"+payment_gross)
         
         )
+        
+        
     
 
         with open('/tmp/ipnout.txt','a') as f:
