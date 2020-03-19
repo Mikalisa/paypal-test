@@ -10,7 +10,7 @@ def send_async_email(app, msg):
 
 
 def send_email(subject, recipients, text_body):
-    msg = Message(subject, sender=sender, recipients=recipients)
+    msg = Message(subject, recipients=recipients)
     msg.body = text_body
   
     Thread(target=send_async_email,
