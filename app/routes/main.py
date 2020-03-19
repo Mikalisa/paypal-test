@@ -81,7 +81,7 @@ def ipn():
         
         
         
-        send_email("Payment from the website", support@divaexplorer-tvj.co.uk, ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
+        send_email("Payment from the website", 'support@divaexplorer-tvj.co.uk', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
 
          """Payment recieved form customer. 
         name: %s
