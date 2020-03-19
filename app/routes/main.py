@@ -81,7 +81,7 @@ def ipn():
         
         
         
-        send_email("Payment from the website", 'Divaexplorer-tvj.co.uk Support', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com', payer_email],
+        send_email("Payment from the website", 'Divaexplorer-tvj.co.uk Support', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com', str(payer_email)],
 
          """
 Divaexplorer Order Summary
