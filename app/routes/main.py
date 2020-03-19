@@ -70,10 +70,13 @@ def ipn():
         payment_fee = request.form.get('mc_fee')
         payment_net = float(payment_gross) - float(payment_fee)
         payment_status = request.form.get('payment_status')
+        product_type = request.form.get('product_type')
+        mc_currency = request.form.get('mc_currency')
+        address_country = request.form.get('address_country')
         txn_id = request.form.get('txn_id')
         
 
-        payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, txn_id=txn_id)
+        payment = Payment(payer_email=payer_email, unix=unix, payment_date=payment_date, username=username, last_name=last_name, payment_gross=payment_gross, payment_fee=payment_fee, payment_net=payment_net, payment_status=payment_status, product_type=product_type, mc_currency=mc_currency,address_country=address_country, txn_id=txn_id)
         db.session.add(payment)
         db.session.commit()
 
@@ -81,7 +84,7 @@ def ipn():
         
         
         
-        send_email("Payment from the website", 'Divaexplorer-tvj.co.uk Support', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com', str(payer_email)],
+        send_email("Payment from the website", 'Divaexplorer-tvj.co.uk Support', ['mekalissa68@gmail.com', 'divaexplorer58@gmail.com'],
 
          """
 Divaexplorer Order Summary
@@ -95,7 +98,7 @@ Order Details
 Order Date: %s                                       Payment Source: Paypal
 Transaction ID: %s                                       Initial Charge: %s
                                                          Final Cost: %s
-                                                         Item Type:
+                                                         Item Type: %s
 
                                                          TOTAL:	%s
 
@@ -109,7 +112,7 @@ https://www.divaexplorer-tvj.co.uk/
 London, UK
 
 
-""" % (username + " " + last_name, unix, txn_id, "£"+payment_gross, "£"+payment_gross, "£"+payment_gross)
+""" % (username + " " + last_name, unix, txn_id, "£"+payment_gross, "£"+payment_gross, product_type, "£"+payment_gross)
         
         )
     
